@@ -8,8 +8,8 @@ public class Domino : MonoBehaviour
     public float magnification;
     public float weight;
 
-    public Vector3 DominoScale;
-    public Vector3 DominoPosition;
+    Vector3 DominoScale;
+    Vector3 DominoPosition;
 
     public InputField inputField;
     public GameObject dominoGameobject;
@@ -31,8 +31,8 @@ public class Domino : MonoBehaviour
     public void MakeDomino()
     {
         // Set Magnification
-        magnification = float.Parse(inputField.text); 
-
+        magnification = float.Parse(inputField.text);
+        if (magnification < 1.0f || magnification > 3.0f) return;
         /* Initialize */
         weight = 1f;
         DeleteAllDominos();
@@ -51,9 +51,6 @@ public class Domino : MonoBehaviour
         {
             yield return new WaitForSeconds(0.3f);
 
-            // Raise the domino by 1f off the ground
-            DominoPosition.y = (DominoScale.y / 2) + 1f;
-
             // Placed at a certain distance
             DominoPosition.x += (DominoScale.y / 2);
 
@@ -63,6 +60,9 @@ public class Domino : MonoBehaviour
             // Set scale
             DominoScale = new Vector3(DominoScale.x * magnification, DominoScale.y * magnification, DominoScale.z * magnification);
             domino.transform.localScale = DominoScale;
+
+            // Raise the domino by 1f off the ground
+            DominoPosition.y = (DominoScale.y / 2) + 1f;
 
             // Set firstdomino
             if (i == 0) 
