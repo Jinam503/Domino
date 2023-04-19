@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,18 +12,14 @@ public class Player : MonoBehaviour
     public Transform cameraTransform;
     public CharacterController characterController;
     public float moveSpeed = 10f;
+    
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.visible = !Cursor.visible;
-            Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
-        }
+        
         float mouseMoveX = Input.GetAxis("Mouse X");
         float mouseMoveY = Input.GetAxis("Mouse Y");
 
